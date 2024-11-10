@@ -1,17 +1,19 @@
 package arrays_and_hashing
 
-// временная сложность O(n) - нужно пройтись один раз по обоим строкам и еще раз по мапе
+// временная сложность O(n) - нужно пройтись один раз строке и еще раз по мапе
 // память O(n) - нужно хранить мапу под одно слово
 func isAnagram(s string, t string) bool {
-	charsMap := make(map[rune]int)
-	for _, char := range s {
-		charsMap[char]++
+	if len(s) != len(t) {
+		return false
 	}
-	for _, char := range t {
-		if _, exists := charsMap[char]; !exists {
+	charsMap := make(map[rune]int)
+	tlen := len(t)
+	for i, char := range s {
+		charsMap[char]++
+		if i+1 > tlen {
 			return false
 		}
-		charsMap[char]--
+		charsMap[rune(t[i])]--
 	}
 
 	for _, charsCount := range charsMap {
