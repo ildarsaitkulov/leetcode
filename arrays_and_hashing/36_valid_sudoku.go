@@ -43,31 +43,5 @@ func isValidSudoku(board [][]byte) bool {
 }
 
 func getBoxNumber(row, col int) int {
-	if row <= 2 {
-		if col <= 2 {
-			return 1
-		}
-		if col <= 5 {
-			return 2
-		}
-		return 3
-	}
-
-	if row <= 5 {
-		if col <= 2 {
-			return 4
-		}
-		if col <= 5 {
-			return 5
-		}
-		return 6
-	}
-
-	if col <= 2 {
-		return 7
-	}
-	if col <= 5 {
-		return 8
-	}
-	return 9
+	return (row/3)*3 + col/3
 }
